@@ -10,10 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import { FocusableLeaf, FocusableParent } from './utility';
 
 const pages = ['About Me', 'Experience', 'Contact'];
 
 export default function TopMenu() {
+  return null;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -22,6 +24,7 @@ export default function TopMenu() {
   };
 
   const handleCloseNavMenu = () => {
+    console.log('close')
     setAnchorElNav(null);
   };
 
@@ -47,17 +50,19 @@ export default function TopMenu() {
           >
             Portofolio v0
           </Typography>
+          <FocusableParent tag='div' withFocus>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <FocusableLeaf component={Button}
                 key={page}
-                onClick={handleCloseNavMenu}
+                onEnterPress={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
-              </Button>
+              </FocusableLeaf>
             ))}
           </Box>
+          </FocusableParent>
           <ConstructionIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"

@@ -1,0 +1,41 @@
+.root {
+  margin: auto;
+  display: flex;
+  overflow: visible !important;
+  position: relative;
+  max-width: 500px;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  transition: 0.3s;
+  align-items: center;
+  margin-left: auto;
+  border-radius: 16px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  flex-direction: row;
+}
+.media {
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 0;
+  position: relative;
+  margin-right: auto;
+  border-radius: 16px;
+  padding-bottom: 48%;
+  background-color: #fff;
+  width: 100%;
+  transform: translateX(-8px);
+  margin-top: 0;
+  margin-left: -24px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png);
+}
+.button {
+  color: #ffffff;
+  box-shadow: 0px 4px 32px rgba(252, 56, 56, 0.4);
+  padding-left: 24px;
+  border-radius: 100px;
+  padding-right: 24px;
+  background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+}
