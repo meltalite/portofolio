@@ -1,0 +1,5 @@
+.outlined {
+  -webkit-box-shadow:inset 0px 0px 0px 1px white !important;
+    -moz-box-shadow:inset 0px 0px 0px 1px white !important;
+    box-shadow:inset 0px 0px 0px 1px white !important;
+}

@@ -15,6 +15,7 @@ export const BlogCardDemo = React.memo(function BlogCard({ onFocus, onBlur, focu
 
   function onEnterPress(props: typeof extraProps) {
     console.log('blog card enter', props)
+    navigate('/project/' + props.title)
   }
   return (
     <FocusableLeaf component={Card} focusIndex={focusIndex}

@@ -1,38 +1,55 @@
 import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import PageStructure from './page-structure';
-import theme from './theme';
-import { init, setKeyMap } from '@noriginmedia/norigin-spatial-navigation';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+  Outlet
+} from "react-router-dom";
+import ProjectDetail from './pages/project-detail';
+import { Project } from './pages/project';
+import Copyright from './components/copyright';
 
-init()
-// init({ visualDebug: true })
-setKeyMap({
-  left: [65, 37],
-  down: [83, 40],
-  right: [68, 39],
-  up: [87, 38],
-  enter: [32, 13]
-})
+function App() {
+  const navigate = useNavigate();
+  const callbackHandler = React.useCallback((event: KeyboardEvent) => {
+    event.stopPropagation()
+    console.log(event.keyCode)
+    if (event.keyCode === 27) {
+      navigate(-1)
+    }
+  }, [])
 
-export default function App() {
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  React.useEffect(() => {
+    window.addEventListener('keydown', callbackHandler);
+    return () => {
+      window.removeEventListener('keydown', callbackHandler);
+    };
+  }, [callbackHandler]);
 
-  // const currentTheme = React.useMemo(
-  //   () =>
-  //     {
-  //       theme.palette.mode = prefersDarkMode ? 'dark' : 'light';
-  //       return theme;
-  //     },
-  //   [prefersDarkMode],
-  // );
+  return <>
+    <Outlet />
+    <Copyright />
+  </>
+}
 
-  return (
-    <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <PageStructure />
-    </ThemeProvider>
-  );
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Project />
+      },
+      {
+        path: "/project/:name",
+        element: <ProjectDetail />
+      },
+    ]
+  }
+]);
+
+export default function AppRouter() {
+  return <RouterProvider router={router} />
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import type { UseFocusableConfig, UseFocusableResult } from '@noriginmedia/norigin-spatial-navigation';
-import classes from '../app.module.css';
+import classes from './focusable.module.css';
 
 function FocusableLeaf<T>({ component: Component, focusKey, onFocus, onEnterPress, onBlur, className, focusIndex, extraProps, ...props }: FocusableLeafPropsType<T>) {
   const { ref, focused, focusKey: fKey } = useFocusable<typeof extraProps>({ focusKey, onEnterPress, extraProps });
