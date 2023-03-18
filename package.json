@@ -1,8 +1,10 @@
 {
-  "name": "material-cra-ts",
+  "name": "portofolio",
+  "homepage": "https://meltalite.github.io/portofolio",
   "version": "5.0.0",
-  "private": true,
+  "private": false,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui-treasury/styles": "^1.13.1",
@@ -11,17 +13,22 @@
     "@noriginmedia/norigin-spatial-navigation": "^1.2.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "craco-alias": "^3.0.1",
+    "gh-pages": "^5.0.0",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "^6.9.0",
     "react-scripts": "latest",
+    "sass": "^1.59.3",
     "typescript": "latest"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b live -d build"
   },
   "browserslist": {
     "production": [

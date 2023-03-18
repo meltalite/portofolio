@@ -1,5 +1,5 @@
-.root {
-  margin: auto 50px;
+.card {
+  margin: auto 25px;
   display: flex;
   overflow: visible !important;
   position: relative;
@@ -11,23 +11,34 @@
   padding-bottom: 16px;
   padding-top: 16px;
   flex-direction: row;
+  max-height: 273px;
+  min-width: 400px;
+  max-width: 400px;
 }
 .media {
   display: block;
-  background-size: cover;
+  background-size: contain !important;
   background-repeat: no-repeat;
   background-position: center;
-  height: 0;
   position: relative;
   margin-right: auto;
   border-radius: 16px;
   padding-bottom: 48%;
   background-color: #fff;
-  width: 100%;
   transform: translateX(-8px);
   margin-top: 0;
   margin-left: -24px;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png);
+  min-width: 192px;
+  max-width: 192px;
+  max-height: 192px;
+}
+.short {
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  display: -webkit-box;
 }
 .button {
   color: #ffffff;

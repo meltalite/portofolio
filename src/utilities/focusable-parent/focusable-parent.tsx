@@ -11,7 +11,7 @@ type FocusableParentPropsType<S extends keyof JSX.IntrinsicElements> = {
 } & ParentProps<S>
 
 const FocusableParent = forwardRef<any, any>((props, ref) => {
-  const { withFocus, tag, trackChildren, preferredChildFocusKey, ...rest } = props;
+  const { withFocus, tag = 'div', trackChildren, preferredChildFocusKey, ...rest } = props;
   const T = tag
   const { focusKey, focusSelf, ref: autoRef } = useFocusable({ trackChildren, preferredChildFocusKey })
 

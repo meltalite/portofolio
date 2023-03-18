@@ -1,3 +1,8 @@
+.section-container {
+  overflow-x: hidden;
+  padding: 10px 25px;
+}
+
 .section {
   display: flex;
   flex-direction: row;
@@ -9,13 +14,8 @@
   transition: -webkit-transform .15s linear;
   transition: transform .15s linear;
   transition: transform .15s linear,-webkit-transform .15s linear;
-}
 
-.section-container {
-  overflow-x: hidden;
-  padding: 16px;
-}
-
-.section-title {
-  padding-left: 88px;
+  :global(> div:first-of-type) {
+    margin-left: 0px;
+  }
 }

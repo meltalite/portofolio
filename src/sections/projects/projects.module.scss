@@ -1,0 +1,21 @@
+.section-container {
+  overflow-x: hidden;
+  padding: 10px 25px;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: relative;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform .15s linear;
+  transition: transform .15s linear;
+  transition: transform .15s linear,-webkit-transform .15s linear;
+
+  :global(> div:first-of-type) {
+    margin-left: 0px;
+  }
+}

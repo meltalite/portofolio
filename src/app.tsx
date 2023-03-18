@@ -1,20 +1,23 @@
 import * as React from 'react';
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
   useNavigate,
   Outlet
 } from "react-router-dom";
-import ProjectDetail from './pages/project-detail';
-import { Project } from './pages/project';
-import Copyright from './components/copyright';
+import { Copyright, Legends } from '@components/index';
+import { ProjectDetail } from '@sections/index';
+import { Resume } from '@pages/index';
 
+const backKeys =[
+  27, //Esc
+  16, // Shift
+]
 function App() {
   const navigate = useNavigate();
   const callbackHandler = React.useCallback((event: KeyboardEvent) => {
     event.stopPropagation()
-    console.log(event.keyCode)
-    if (event.keyCode === 27) {
+    if (backKeys.includes(event.keyCode)) {
       navigate(-1)
     }
   }, [])
@@ -27,23 +30,26 @@ function App() {
   }, [callbackHandler]);
 
   return <>
+    <Legends />
+    <br/>
+    <br/>
     <Outlet />
     <Copyright />
   </>
 }
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
         index: true,
-        element: <Project />
+        element: <Resume />
       },
       {
-        path: "/project/:name",
+        path: "project/:name",
         element: <ProjectDetail />
       },
     ]

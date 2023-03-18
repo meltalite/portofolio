@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import ConstructionIcon from '@mui/icons-material/Construction';
-import { FocusableLeaf, FocusableParent } from './utility';
+import { FocusableLeaf, FocusableParent } from './utilities';
 
 const pages = ['About Me', 'Experience', 'Contact'];
 
