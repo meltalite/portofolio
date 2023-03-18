@@ -1,19 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { FocusContext, useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import type { UseFocusableConfig } from '@noriginmedia/norigin-spatial-navigation';
-
-function FocusableParent<S extends keyof JSX.IntrinsicElements>({ tag, children, className, withFocus, trackChildren = true, preferredChildFocusKey }: FocusableParentPropsType<S>) {
-  const T = tag as unknown as (props: any) => JSX.Element;
-  const { focusKey, focusSelf, ref } = useFocusable({ trackChildren, preferredChildFocusKey })
-
-  useEffect(() => {
-    if (withFocus) focusSelf();
-  }, [])
-
-  return <FocusContext.Provider value={focusKey}>
-    <T className={className} ref={ref}>{children}</T>
-  </FocusContext.Provider>
-}
 
 type ParentProps<S> = UseFocusableConfig & React.HTMLAttributes<S>
 
@@ -22,5 +9,26 @@ type FocusableParentPropsType<S extends keyof JSX.IntrinsicElements> = {
   className?: string,
   withFocus?: boolean;
 } & ParentProps<S>
+
+const FocusableParent = forwardRef<any, any>((props, ref) => {
+  const { withFocus, tag, trackChildren, preferredChildFocusKey, ...rest } = props;
+  const T = tag
+  const { focusKey, focusSelf, ref: autoRef } = useFocusable({ trackChildren, preferredChildFocusKey })
+
+  useEffect(() => {
+    const r = ref as React.MutableRefObject<any>
+    if (!autoRef?.current) return;
+    r.current = autoRef.current;
+  }, [])
+
+
+  useEffect(() => {
+    if (withFocus) focusSelf();
+  }, [withFocus])
+
+  return <FocusContext.Provider value={focusKey}>
+    <T ref={autoRef} {...rest} />
+  </FocusContext.Provider>
+})
 
 export default FocusableParent;

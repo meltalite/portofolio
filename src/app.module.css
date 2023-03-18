@@ -16,7 +16,24 @@
 
 .section {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: relative;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform .15s linear;
+  transition: transform .15s linear;
+  transition: transform .15s linear,-webkit-transform .15s linear;
+}
+
+.section-container {
   overflow-x: hidden;
+  padding: 16px;
+}
+
+.section-title {
+  padding-left: 88px;
 }
 
 .section-item {

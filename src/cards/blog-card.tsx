@@ -6,20 +6,26 @@ import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import styles from './blog-card.module.css';
 import Typography from '@mui/material/Typography';
-import { FocusableLeaf, FocusableParent } from '../utility';
+import { FocusableLeaf } from '../utility';
+import { useNavigate } from 'react-router-dom';
 
-export const BlogCardDemo = React.memo(function BlogCard() {
-  function onEnterPress() {
-    console.log('blog card enter')
+export const BlogCardDemo = React.memo(function BlogCard({ onFocus, onBlur, focusIndex }: any) {
+  const navigate = useNavigate();
+  const extraProps = { title: 'me1' }
+
+  function onEnterPress(props: typeof extraProps) {
+    console.log('blog card enter', props)
   }
   return (
-    <FocusableParent tag='section' withFocus>
-    <FocusableLeaf component={Card} 
-     className={styles['root']} onEnterPress={onEnterPress}>
+    <FocusableLeaf component={Card} focusIndex={focusIndex}
+     className={styles['root']} sx={{ minWidth: '400px' }}
+     onEnterPress={onEnterPress} onFocus={onFocus} onBlur={onBlur} extraProps={extraProps}>
       <CardMedia
         className={styles.media}
         image={
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png'
+          // 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2000px-Git_icon.svg.png'
+          'https://thumbor.prod.vidiocdn.com/wGR3r0xBcEVdTsPVg34kZcYOZmE=/smart/filters:strip_icc():quality(70)/vidio-web-prod-user/uploads/user/avatar/31052580/vidiooriginal-d6d38c.jpg'
+          // 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png'
         }
       />
       <CardContent>
@@ -37,7 +43,6 @@ export const BlogCardDemo = React.memo(function BlogCard() {
         </CardActions>
       </CardContent>
     </FocusableLeaf>
-    </FocusableParent>
   );
 });
 
