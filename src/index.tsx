@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import './index.css'
+import './index.scss'
 import Root from './root';
 
 const rootElement = document.getElementById('root');
